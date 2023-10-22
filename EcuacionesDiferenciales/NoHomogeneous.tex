@@ -133,31 +133,36 @@
     \divline
     
     \begin{multicols}{2}
-        \section{Second order equations}
+        \section{Parameter variation}
         \begin{enumerate}
             \item Normalize equation
                 \textbf {\[\frac{\alpha_{1}}{\alpha_{1}} y^{''} +  \frac{\alpha_{2}}{\alpha_{1}} y^{'}+ \frac{\alpha_{3}}{\alpha_{1}} y = \frac{g(x)}{\alpha_{1}} \]}
             \item Solve homogeneous equation 
-                 \textbf {\[y_{h} = C_{1} e^{\lambda_{1}} + C_{2} e^{\lambda_{2}}\]}  
+                 \textbf {\[y_{h} = C_{1} y_1 + C_{2} y_2\]}  
             \item Particular solution
-                \textbf {\[y_{p} = U_{1}(x) e^{\lambda_{1}} + U_{2}(x) e^{\lambda_{2}}\]}  
-            \item We find
-                 \textbf {\[U_{1}(x) ^{'} = \frac{-y_2 f(x)}{W}\], \[U_{2}(x) ^{'} = \frac{-y_1 f(x)}{W}\]}
-                
-            \item Wronskiano
+                \textbf {\[y_{p} = U_{1}(x) y_1 + U_{2}(x) y_2\]}
+            \item You need Wronskian (W)
                 \textbf{
-                     
-                    \begin{equation}
+                    \begin{gather*}
                         \begin{vmatrix}
-                        y_1 & y_2\\
-                        y_1^{'} & y_2^{'}\\
+                            y_{1} & y_{2}\\
+                            y_{1} ^{'} & y_{2} ^ {'}\\
                         \end{vmatrix}
-                    \end{equation}
+                    \end{gather*}
                 }
-            
+            \item We find
+                 \textbf {\[U_{1}^{'}(x) = \frac{-y_2 f(x)}{W}\] \[U_{2}^{'}(x) = \frac{y_1 f(x)}{W}\]}
+            \item We find U1 y U2
+            \textbf{
+                \begin{gather*}
+                U_{1}(x) = \int_{}^{} U_{1}^{'}(x) \cdot dx 
+                \end{gather*}
+                \begin{gather*}
+                U_{2}(x) = \int_{}^{} U_{2}^{'}(x) \cdot dx 
+                \end{gather*}
+            }
+            \item Remember that, final solution (Note: remember to simplify constants)
+            \textbf{\[y = y_{h} + y_{p}\]}
         \end{enumerate}
-        
-    
-    \end{multicols}  
-    \divline
+    \end{multicols}
 \end{document}
