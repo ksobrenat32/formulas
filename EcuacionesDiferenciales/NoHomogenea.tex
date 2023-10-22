@@ -1,0 +1,163 @@
+\documentclass[letterpaper]{article}
+
+% --- Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.25cm]{geometry}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=1pt plus1pt, indent=0pt]{parskip}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+% --- Data
+\title{No homogeneous second grade differential equations}
+\author{Enrique Calderon \& Elizabeth Portilla}
+\date{October 2023}
+
+% --- Graphics path
+\graphicspath{ {./img/} }
+
+% --- Custom commands
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\makeatother
+\newcommand{\compconj}[1]{%
+    \overline{#1}%
+}
+\newcommand{\divline}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+\newcommand{\taninv}{\tan^{-1}}
+
+\begin{document}
+    \maketitle
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{Antecedents}
+
+        \textbf{Final solution}
+        \[y = y_{h} + y_{p}\]
+
+        \textbf{Homogeneous}
+
+        Variable change
+        \[Ay'' + By' +Cy = 0\]
+        \[A\lambda'' + B\lambda' + C = 0\]
+
+        The solution to the differential equation is the values of \(\lambda\)
+
+        \textbf{Real roots solution}
+        \[y_{h} = C_{1} e^{\lambda_{1}} + C_{2} e^{\lambda_{2}}\]
+        \[C.F. = \{ \lambda_{1}, \lambda_{2} \}\]
+
+        \[y_{h} = C_{1} e^{\lambda_{1}} + C_{2} e^{\lambda_{2}}\]
+        \[C.F. = \{e^ \lambda_{1}, e^ \lambda_{2} \}\]
+        
+        \textbf{Imaginary roots solution}
+        \[\lambda_{1} = a + bi , \lambda_{2} = a - bi\]
+        \[y = C_{1} e^{ax}cos(bx) + C_{1} e^{ax}sen(bx)\]
+        \[C.F. = \{e^{ax}cos(bx), e^{ax}sen(bx)\}\]
+        
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+	\section{Indeterminate coefficients}
+
+        Solving steps:
+        \begin{enumerate}
+            \item Solve homogeneous equation
+                
+            \item Obtain a possible particular solution
+            
+                \textbf{Polynomial}
+                \[x = (Ax + B)\]
+                \[x^{2} = (Ax + B)(Cx + D)\]
+                \[x^{3} = (Ax + B)(Cx + D)(Ex + F)\]
+
+                \textbf{Exponential}
+                \[e^{nx} = A e^{nx}\]
+                \[mxe^{nx} = (Ax + B) e^{nx}\]
+                \[mx^{2}e^{nx} = (Ax + B)(Cx + D) e^{nx}\]
+
+            \item Combine both solutions to obtain \(y\).
+                \[y = y_{h} + y_{p}\]
+        \end{enumerate}
+
+        \textbf{Superposition theory}
+        \[a_{n}y^{n} + a_{n-1}y^{n-1} + ... a_{1}y' + a_{0}y = g(x) \text{ | } a_{n} \neq 0\]
+        \[y_{p} = y_{p1} + y_{p2} + ... y_{pk}\]
+            
+    \end{multicols}
+ 
+    \divline
+    
+    \section{Annihilator operator}
+
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabular}{ |c|c| }
+            \hline
+            Operator & Functions Annihilated (including linear combinations of the functions) \\
+            \hline
+            $D^{n}$ & $1, x, x^2, \ldots, x^{n-1}$ \\
+            \hline
+            $(D-\alpha)^{n}$ & $e^{\alpha x}, x e^{\alpha x}, x^2 e^{\alpha x}, \ldots, x^{n-1}e^{\alpha x}$ \\
+            \hline
+            $[D^{2} - 2 \alpha D + (\alpha^{2} + \beta^{2})]^{n}$ & $e^{\alpha x} \cos{\beta x}, xe^{\alpha x} \cos{\beta x}, \ldots, x^{n-1}e^{\alpha x} \cos{\beta x}$ \\
+            & $e^{\alpha x} \sin{\beta x}, xe^{\alpha x} \sin{\beta x}, \ldots, x^{n-1}e^{\alpha x} \sin{\beta x}$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \begin{multicols}{2}
+
+        \[a_{n}y^{n} + a_{n-1}y^{n-1} + ... a_{1}y' + a_{0}y = g(x)\]
+        
+        Solving solutions:
+        \begin{enumerate}
+            \item Solve homogeneous equation.
+            \item Represent equation in terms of operators.
+            \item Find annihilator operator for \(g(x)\).
+            \item Apply annihilator operator to both sides of the original operator to obtain all the solutions.
+            \item The \(\lambda\) that were not solved by homogeneous are solved with undetermined coefficients because this is the particular solution.
+        \end{enumerate}
+    \end{multicols}
+
+    \divline
+    
+    \begin{multicols}{2}
+        \section{Second order equations}
+        \begin{enumerate}
+            \item Normalize equation
+                \textbf {\[\frac{\alpha_{1}}{\alpha_{1}} y^{''} +  \frac{\alpha_{2}}{\alpha_{1}} y^{'}+ \frac{\alpha_{3}}{\alpha_{1}} y = \frac{g(x)}{\alpha_{1}} \]}
+            \item Solve homogeneous equation 
+                 \textbf {\[y_{h} = C_{1} e^{\lambda_{1}} + C_{2} e^{\lambda_{2}}\]}  
+            \item Particular solution
+                \textbf {\[y_{p} = U_{1}(x) e^{\lambda_{1}} + U_{2}(x) e^{\lambda_{2}}\]}  
+            \item We find
+                 \textbf {\[U_{1}(x) ^{'} = \frac{-y_2 f(x)}{W}\], \[U_{2}(x) ^{'} = \frac{-y_1 f(x)}{W}\]}
+                
+            \item Wronskiano
+                \textbf{
+                     
+                    \begin{equation}
+                        \begin{vmatrix}
+                        y_1 & y_2\\
+                        y_1^{'} & y_2^{'}\\
+                        \end{vmatrix}
+                    \end{equation}
+                }
+            
+        \end{enumerate}
+        
+    
+    \end{multicols}  
+    \divline
+\end{document}
