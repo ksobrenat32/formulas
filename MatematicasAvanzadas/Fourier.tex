@@ -1,0 +1,174 @@
+\documentclass[letterpaper]{article}
+
+% --- Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.25cm]{geometry}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=1pt plus1pt, indent=0pt]{parskip}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+% --- Data
+\title{Fourier analysis}
+\author{Enrique Calderon}
+\date{November 2023}
+
+% --- Graphics path
+\graphicspath{ {./img/} }
+
+% --- Custom commands
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\makeatother
+\newcommand{\compconj}[1]{%
+	\overline{#1}%
+}
+\newcommand{\divline}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+\newcommand{\taninv}{\tan^{-1}}
+
+\begin{document}
+        \maketitle
+
+        \divline
+
+	\begin{multicols}{2}
+		\section{Fourier}
+
+                \textbf{Main formula}
+  
+                \[f(t) = a_{0} + \sum_{n = 1}^{\infty} a_{n} \cos{( \frac{2 \pi n}{T} t )} + \sum_{n = 1}^{\infty} a_{n} \sin{( \frac{2 \pi n}{T} t )} \]
+
+                \textbf{Orthogonality}
+
+                \[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f_{1}(t) f_{2}(t) dt = 
+                    \begin{cases} 
+					\alpha \text{ if } f_{1} = f_{2} \\
+					0 \text{ if } f_{1} \neq f_{2}
+				\end{cases}
+                \]
+
+                The oscillation is named Gibbs phenomenon.
+                The equality does not always maintain when operating in both sides.
+                
+	\end{multicols}
+ 
+	\divline
+
+        \begin{multicols}{2}
+            \section{Sin and cosine}
+
+                Using \(\frac{2}{T}\) to normalize:
+
+                \textbf{cos \(\cdot\) cos}
+
+                    \[ \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \cos{( \frac{2 n \pi}{T} t )} \cos{( \frac{2 m \pi}{T} t )} dt =
+                        \begin{cases} 
+					   0 \text{ if } n \neq 0 \\
+					   1 \text{ if } n = 0
+				    \end{cases}
+                    \]
+
+                \textbf{sin \(\cdot\) cos}
+
+                    \[ \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \sin{( \frac{2 n \pi}{T} t )} \cos{( \frac{2 m \pi}{T} t )} dt = 0\]
+
+                \textbf{sin \(\cdot\) sin}
+
+                    \[ \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} \sin{( \frac{2 n \pi}{T} t )} \sin{( \frac{2 m \pi}{T} t )} dt =
+                        \begin{cases} 
+					   0 \text{ if } n \neq 0 \\
+					   1 \text{ if } n = 0
+				    \end{cases}
+                    \]
+
+                \textbf{Applied in Fourier}
+
+                    \[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cos{( \frac{2 n \pi}{T} t )} dt = \sum_{n = 1}^{\infty} a_{n} \cdot \frac{T}{2} \]
+
+                    \[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \sin{( \frac{2 n \pi}{T} t )} dt = \sum_{n = 1}^{\infty} b_{n} \cdot \frac{T}{2} \]
+
+        \end{multicols}
+
+        \divline
+
+        \begin{multicols}{2}
+
+            \section{Geometric Fourier series}
+
+                \[f(t) = a_{0} + \sum_{n = 1}^{\infty} a_{n} \cos{( \frac{2 \pi n}{T} t )} + \sum_{n = 1}^{\infty} a_{n} \sin{( \frac{2 \pi n}{T} t )} \]
+
+                Where:
+
+                \[a_{0} = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) dt \]
+
+                \[a_{n} = \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \cos{( \frac{2 \pi n}{T} t )} dt \]
+
+                \[b_{n} = \frac{2}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) \sin{( \frac{2 \pi n}{T} t )} dt \]
+
+        \end{multicols}
+
+        \divline
+
+        \begin{multicols}{3}
+            \section{Parity functions}
+                
+                \textbf{Even:}
+
+                \[f(t) = f(-t)\]
+
+                For integrals in origin you can calculate half and multiply by 2
+
+                \textbf{Odd:}
+
+                \[f(t) = - f(-t)\]
+
+                Integrals in origin are equal to 0.
+
+                \textbf{Properties:}
+
+                \[f_{p}(t) \cdot f_{p}(t) = f_{p}(t)\]
+                \[f_{i}(t) \cdot f_{i}(t) = f_{p}(t)\]
+                \[f_{i}(t) \cdot f_{p}(t) = f_{i}(t)\]
+
+                \textbf{In Fourier}
+
+                If \(f(t)\) is even:
+
+                \[a_{0} = \frac{2}{T} \int_{0}^{\frac{T}{2}} f_{p}(t) dt \]
+                \[a_{n} = \frac{4}{T} \int_{0}^{\frac{T}{2}} f_{p}(t) \cos{(\frac{2 n \pi}{T} t)} dt \]
+                \[b_{n} = 0\]
+
+                If \(f(t)\) is odd:
+
+                \[a_{0} = 0\]
+                \[a_{n} = 0\]
+                \[b_{n} = \frac{4}{T} \int_{0}^{\frac{T}{2}} f_{p}(t) \sin{(\frac{2 n \pi}{T} t)} dt \]
+                
+        \end{multicols}
+
+        \divline
+
+        \begin{multicols}{2}
+
+            \section{Complex Fourier series}
+
+                \[f(t) = \sum_{n = - \infty}^{\infty} C_{n} e^{\frac{i2n\pi}{T} t} \]
+
+                Where:
+
+                \[C_{n} = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{-\frac{i2n\pi}{T}t} dt \]
+
+                \[a_{n} = 2 \mathbb{R}\text{e}(C_{n})\]
+                \[b_{n} = - 2 \mathbb{I}\text{m}(C_{n})\]
+
+        \end{multicols}
+ 
+	\divline
+ 
+\end{document}
