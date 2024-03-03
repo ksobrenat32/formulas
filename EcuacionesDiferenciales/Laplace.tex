@@ -1,0 +1,154 @@
+\documentclass[letterpaper]{article}
+
+% --- Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.25cm]{geometry}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=1pt plus1pt, indent=0pt]{parskip}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+% --- Data
+\title{Laplacce}
+\author{Enrique Calderon \& Elizabeth Portilla}
+
+% --- Graphics path
+\graphicspath{ {./img/} }
+
+% --- Custom commands
+\makeatletter
+\let\thetitle\@title
+\let\theauthor\@author
+\makeatother
+\newcommand{\compconj}[1]{%
+    \overline{#1}%
+}
+\newcommand{\divline}{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}
+\newcommand{\taninv}{\tan^{-1}}
+
+\begin{document}
+    \maketitle
+
+    \divline
+
+    \begin{multicols}{2}
+
+        \section{By definition}
+
+            \[\mathcal{L} (f(t)) = F(S) = \int_{0}^{\infty} e^{-St} f(t) dt \]
+
+            or 
+
+            \[F(S) = \lim_{b \to \infty } \int_{0}^{b} e^{-St} f(t) dt \]
+
+            And the inverse
+
+            \[\mathcal{L}^{-1} (F(S)) = f(t) = \frac{1}{2\pi} \int_{-i\infty}^{i\infty} e^{St}F(S) \]
+            
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{For differential equations}
+
+            \[\mathcal{L} \{ f^{n} (\mathcal{T}) \} = S^{n} F(S) - S^{n-1} f(0) - ... - f^{n-1} (0) \]
+
+            To solve differential equations first convert with Laplace operator, solve it and then apply inverse Laplace operator.
+
+    
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{Translation theorem}
+            			
+		\[u(\mathcal{T}-a) = 
+			\begin{cases} 
+				0  & 0 \leq t \leq a \\
+				1 & 1 \geq a
+			\end{cases}
+		\]
+
+             \[\mathcal{L} \{ u(\mathcal{T} - a) \} = \frac{e^{-aS}}{S} \]
+             
+             \[\mathcal{L} \{ f(\mathcal{T} - a) u(\mathcal{T} - a) \} = e^{-aS} F(S) \]
+
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{Dirac's delta}
+
+            \[\delta (\mathcal{T} - \mathcal{T}_{0}) = 
+                \begin{cases} 
+				0  & 0 \leq \mathcal{T} < \mathcal{T}_{0} - a \\
+                    \frac{1}{2}a & \mathcal{T}_{0} - a \leq \mathcal{T} < \mathcal{T}_{0} + a \\
+				0 & \mathcal{T}_{0} + a \leq \mathcal{T}
+			\end{cases}
+            \]
+
+            \[\mathcal{L} \{ \delta(\mathcal{T} - \mathcal{T}_{0}) \} = e^{-\mathcal{T}_{0} S} \]
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{Convolution}
+
+            \[f * g = \int^{\mathcal{T}}_0 f(x) g(\mathcal{T} - x) dx \]
+
+            \[\mathcal{L} \{ f * g \} = \mathcal{L} \{ f(\mathcal{T}) \} \mathcal{L} \{ g(\mathcal{T}) \} \]
+    \end{multicols}
+
+    \divline
+
+    \begin{multicols}{2}
+        \section{Differential equations system}
+            1. Solve differential equations separately
+            2. Arrange the solutions of each differential equation as a system
+            \[ 
+                \begin{cases} 
+				AX(s) + BY(S) = f_1(S)\\
+                CX(s) + DY(S)  = f_2(S)\\
+			\end{cases}
+            \]
+            3. Solve system by Cramer's method to find values of X(s), Y(S)...
+            
+            \[Y(s) = \frac{
+            \begin{vmatrix}
+                A & f_1(S)\\
+                C & f_2(S)
+            \end{vmatrix}}
+            {
+            \begin{vmatrix}
+                A & B\\
+                C & D
+            \end{vmatrix}
+            }\]
+            \[X(s) = \frac{
+            \begin{vmatrix}
+                f_1(S) & B\\
+                f_2(S) & D
+            \end{vmatrix}}
+            {
+            \begin{vmatrix}
+                A & B\\
+                C & D
+            \end{vmatrix}
+            }\]
+
+            4. Obtaining:
+            
+             \[{L}^{-1} (X(S)) = X(t)\]  \\
+             \[{L}^{-1} (Y(S)) = Y(t) \]
+                    
+    \end{multicols}
+\end{document}
