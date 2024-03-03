@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 while read p; do
-  rm -f $p
+  find . -type f -name "${p}" -delete
 done < .gitignore
